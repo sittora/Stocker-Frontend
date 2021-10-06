@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useState } from "react/cjs/react.development";
-import logo from './logo.svg';
-import './App.css';
+import logo from '../logo.svg';
+import '../App.css';
 
 function App() {
-  const [response], setResponse] = useState([])
+  const [response, setResponse] = useState([])
 
   useEffect(() => {
     // need this path to exist
