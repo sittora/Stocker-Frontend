@@ -7,6 +7,13 @@ import Userlist from "./UserList";
 import StockList from "./StockList";
 
 function App() {
+
+  const ALL_STOCKS = "http://localhost:9292/stocks";
+  const ALL_USERS = "http://localhost:9292/users";
+  const [allStocks, setAllStocks] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
+
+
   useEffect(() => {
     // need this path to exist
     fetch("http://localhost:9292/stocks")
@@ -22,11 +29,25 @@ function App() {
       });
   }, [])
 
+  
 
-  const ALL_STOCKS = "http://localhost:9292/stocks";
-  const ALL_USERS = "http://localhost:9292/users";
-  const [allStocks, setAllStocks] = useState([]);
-  const [allUsers, setAllUsers] = useState([]);
+  function handleDeleteStock(id) {
+    const updatedStocksArray = allStocks.filter((stock) => stock.id !== id);
+    setAllStocks(updatedStocksArray);
+  }
+
+  function handleUpdateStock(updatedStock) {
+    const updatedStocksArray = allStocks.map((stock) => {
+      if (stock.id === updatedStock.id) {
+        return updatedStock;
+      } else {
+        return stock;
+      }
+    });
+    setAllStocks(updatedStocksArray);
+  }
+
+
 
 
 
@@ -43,7 +64,11 @@ function App() {
         </Route>
         <Route exact path="/stocks">
         <div id="spacer"></div>
-          <StockList title="Stocks" />
+          <StockList 
+            title="Stocks"
+            onDeleteStock={handleDeleteStock}
+            onUpdateStock={handleUpdateStock}
+          />
         </Route>
         <Route exact path="/users">
         <div id="spacer"></div>
