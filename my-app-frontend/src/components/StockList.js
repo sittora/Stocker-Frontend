@@ -13,7 +13,7 @@ function StockList({ stockListArray, title, onViewMore }) {
         ));
     return (
         <div id="stock-list-container">
-            <table>
+            <table class="center">
                 <tr>
                     <th>Name</th>
                     <th>Ticker Tag</th>

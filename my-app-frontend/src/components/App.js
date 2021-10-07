@@ -3,7 +3,7 @@ import { useState } from "react/cjs/react.development";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import '../App.css';
 import Header from "./Header";
-import IndividualList from "./IndividualList";
+import Userlist from "./UserList";
 import StockList from "./StockList";
 
 function App() {
@@ -16,11 +16,17 @@ function App() {
       .then((data) => {
         setAllStocks(data);
       });
+
+      fetch("http://localhost:9292/users")
+      .then((r) => r.json())
+      .then((data) => {
+        setAllUsers(data);
+      });
   }, [])
 
 
-  const ALL_STOCKS = `http://localhost:8080`;
-  const ALL_USERS = `http://localhost:8080`;
+  const ALL_STOCKS = "http://localhost:9292/stocks";
+  const ALL_USERS = "http://localhost:9292/users";
   const [allStocks, setAllStocks] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
 
@@ -39,11 +45,11 @@ function App() {
         </Route>
         <Route exact path="/stocks">
         <div id="spacer"></div>
-          <IndividualList stockListArray={allStocks} title="Stocks" list={ALL_STOCKS} />
+          <StockList stockListArray={allStocks} title="Stocks" list={ALL_STOCKS} />
         </Route>
         <Route exact path="/users">
         <div id="spacer"></div>
-          <IndividualList userListArray={allUsers} title="Users" list={ALL_USERS} />
+          <Userlist userListArray={allUsers} title="Users" list={ALL_USERS} />
         </Route>
         <Route path="*">
           <h1>404 not found</h1>
