@@ -7,8 +7,6 @@ import Userlist from "./UserList";
 import StockList from "./StockList";
 
 function App() {
-  const [response, setResponse] = useState([])
-
   useEffect(() => {
     // need this path to exist
     fetch("http://localhost:9292/stocks")
@@ -41,11 +39,11 @@ function App() {
       <Switch>
         <Route exact path="/">
           <div id="spacer"></div>
-          <StockList stockListArray={allStocks} title="Stocks" />
+          <h1>Welcome to Stocker!</h1>
         </Route>
         <Route exact path="/stocks">
         <div id="spacer"></div>
-          <StockList stockListArray={allStocks} title="Stocks" list={ALL_STOCKS} />
+          <StockList title="Stocks" />
         </Route>
         <Route exact path="/users">
         <div id="spacer"></div>

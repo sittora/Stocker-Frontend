@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Stock from "./Stock";
 
-function StockList({ stockListArray, title, onViewMore }) {
+function StockList({ title }) {
+    useEffect(() => {
+        // need this path to exist
+        fetch("http://localhost:9292/stocks")
+          .then((r) => r.json())
+          .then((data) => {
+            setAllStocks(data);
+          });   
+      }, [])
 
-    const stockRows = stockListArray.map((stock, index) => (
+      const [allStocks, setAllStocks] = useState([]);
+
+    const stockRows = allStocks.map((stock, index) => (
             <tr key={stock.id}>
                 <td>{stock.name}</td>
                 <td>{stock.ticker_tag}</td>
