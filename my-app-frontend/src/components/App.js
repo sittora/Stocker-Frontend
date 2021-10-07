@@ -1,39 +1,56 @@
 import React, { useEffect } from "react";
 import { useState } from "react/cjs/react.development";
-import logo from '../logo.svg';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import '../App.css';
+import Header from "./Header";
+import IndividualList from "./IndividualList";
+import StockList from "./StockList";
 
 function App() {
   const [response, setResponse] = useState([])
 
   useEffect(() => {
     // need this path to exist
-    fetch("http://localhost:9292/test")
+    fetch("http://localhost:9292/stocks")
       .then((r) => r.json())
       .then((data) => {
-        console.log(data);
-        setResponse(data);
+        setAllStocks(data);
       });
   }, [])
 
+
+  const ALL_STOCKS = `http://localhost:8080`;
+  const ALL_USERS = `http://localhost:8080`;
+  const [allStocks, setAllStocks] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <p>This is the test response:</p>
-      <p>{response}</p>
+      <BrowserRouter>
+        <Header/>
+        </BrowserRouter>
+      <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <div id="spacer"></div>
+          <StockList stockListArray={allStocks} title="Stocks" />
+        </Route>
+        <Route exact path="/stocks">
+        <div id="spacer"></div>
+          <IndividualList stockListArray={allStocks} title="Stocks" list={ALL_STOCKS} />
+        </Route>
+        <Route exact path="/users">
+        <div id="spacer"></div>
+          <IndividualList userListArray={allUsers} title="Users" list={ALL_USERS} />
+        </Route>
+        <Route path="*">
+          <h1>404 not found</h1>
+        </Route>
+      </Switch>
+      </BrowserRouter>
+
     </div>
   );
 }
