@@ -5,14 +5,17 @@ import '../App.css';
 import Header from "./Header";
 import Userlist from "./UserList";
 import StockList from "./StockList";
-import Backend from "./Backend"
+import Backend from "./Backend";
+import SubscriptionList from "./SubscriptionList";
 
 function App() {
 
   const ALL_STOCKS = "http://localhost:9292/stocks";
   const ALL_USERS = "http://localhost:9292/users";
+  const ALL_SUBSCRIPTIONS = "http://localhost:9292/subscriptions";
   const [allStocks, setAllStocks] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
+  const [allSubscriptions, setAllSubscriptions] = useState([]);
 
 
   useEffect(() => {
@@ -27,6 +30,12 @@ function App() {
       .then((r) => r.json())
       .then((data) => {
         setAllUsers(data);
+      });
+
+      fetch("http://localhost:9292/subscriptions")
+      .then((r) => r.json())
+      .then((data) => {
+        setAllSubscriptions(data);
       });
   }, [])
 
@@ -48,9 +57,21 @@ function App() {
     setAllStocks(updatedStocksArray);
   }
 
+  function handleDeleteSubscription(id) {
+    const updatedSubscriptionsArray = allSubscriptions.filter((subscription) => subscription.id !== id);
+    setAllSubscriptions(updatedSubscriptionsArray);
+  }
 
-
-
+  function handleUpdateSubscription(updatedSubscription) {
+    const updatedSubscriptionsArray = allStocks.map((subscription) => {
+      if (subscription.id === updatedSubscription.id) {
+        return updatedSubscription;
+      } else {
+        return subscription;
+      }
+    });
+    setAllSubscriptions(updatedSubscriptionsArray);
+  }
 
   return (
     <div className="App">
@@ -71,14 +92,23 @@ function App() {
             onUpdateStock={handleUpdateStock}
           />
         </Route>
+        
         <Route exact path="/users">
         <div id="spacer"></div>
           <Userlist userListArray={allUsers} title="Users" list={ALL_USERS} />
         </Route>
+
+        <Route exact path="/subscriptions">
+        <div id="spacer"></div>
+          <SubscriptionList 
+            title="Subscriptions" 
+            onDeleteSubscription={handleDeleteSubscription}
+            onUpdateSubscription={handleUpdateSubscription} />
+        </Route>
+        
         <Route exact path="/backend">
           <Backend/>
         </Route>
-        
         
         <Route path="*">
           <h1>404 not found</h1>

@@ -26,20 +26,20 @@ function Stock ({ stock, onDeleteStock, onUpdateStock }) {
     }
 
 
-    function handlePriceFormSubmit(e) {
-        e.preventDefault();
-        fetch(`http://localhost:9292/stocks/${id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ price: updatedPrice }),
-        })
-          .then((r) => r.json())
-          .then((updatedStock) => {
-            onUpdateStock(updatedStock);
-          });
-    }
+    // function handlePriceFormSubmit(e) {
+    //     e.preventDefault();
+    //     fetch(`http://localhost:9292/stocks/${id}`, {
+    //       method: "PATCH",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({ price: updatedPrice }),
+    //     })
+    //       .then((r) => r.json())
+    //       .then((updatedStock) => {
+    //         onUpdateStock(updatedStock);
+    //       });
+    // }
  
     return(
         <tr key={stock.id}>
