@@ -216,7 +216,6 @@ function Backend() {
     
       } 
     
-      deleteSubscription(10)
       return (
         <div></div>
     )
