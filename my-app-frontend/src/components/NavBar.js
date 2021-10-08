@@ -6,7 +6,7 @@ function NavBar() {
         <div id="navbar">
             <BrowserRouter>
                 <NavLink className="nav-button" exact to="/stocks">Stocks</NavLink>
-                <NavLink className="nav-button" to="/users">Users</NavLink>
+                <NavLink className="nav-button" exact to="/users">Users</NavLink>
             </BrowserRouter>
         </div>
     )

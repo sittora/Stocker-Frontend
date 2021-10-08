@@ -52,17 +52,20 @@ function Stock ({ stock, onDeleteStock, onUpdateStock }) {
                 </td>
                 {isOpen && <Popup
                     content={<>
-                    <h1>Edit Stock</h1>
-                    <h1>{stock.name}</h1>
-                    <p>{stock.ticker_tag}</p>
-                    <p>{stock.price}</p> 
-                    <p>{stock.total_stock}</p>
+                    <div class="stock-details">
+                      <h1>{stock.name}</h1>
+                      <h3>{stock.ticker_tag}</h3>
+                      <h4>Price: ${stock.price}</h4> 
+                      <h4>Total stocks: {stock.total_stock}</h4>
+                    </div>
+                    
+                
                     <EditStockForm 
                       stock={stock} 
                       handleUpdateStock={onUpdateStock} 
                       handleClose={togglePopup}
                     />
-                    <button onClick={handleDeleteClick}>Delete</button>
+                    <button onClick={handleDeleteClick} class="delete-button">Delete</button>
                     </>}
                     handleClose={togglePopup}
                 />}

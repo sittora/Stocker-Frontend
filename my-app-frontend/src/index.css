@@ -36,7 +36,7 @@ font-size: 40px;
 
 th, td {
   padding: 15px;
-  text-align: left;
+  text-align: center;
   border: 1px solid #ddd;
   
 }
@@ -76,9 +76,9 @@ table {
   max-height: 70vh;
   margin-top: calc(100vh - 85vh - 20px);
   background-color: #d6e2dd;
-  border-radius: 4px;
+  border-radius: 40px;
   padding: 20px;
-  border: 1px solid rgb(186, 231, 217);
+  border: solid #119682 6px;
   overflow: auto;
 }
 
@@ -105,4 +105,66 @@ button:hover {
   border-radius: 20px;
   border:solid #ffffff 3px;
   transform: scale(1.2);
+}
+
+.delete-button{
+  background-color: rgb(226, 22, 22); 
+  border: solid #ab0505 3px;
+}
+
+.delete-button:hover {
+  background-color: rgb(226, 22, 22);
+  border-radius: 20px;
+  border:solid #ffffff 3px;
+  transform: scale(1.2);
+}
+
+.close-icon {
+  color: black;
+  content: 'x';
+  cursor: pointer;
+  position: fixed;
+  right: calc(15% - 30px);
+  top: calc(100vh - 85vh - 33px);
+  background: #ededed;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid #999;
+  font-size: 20px;
+}
+
+.close-icon:hover {
+  box-shadow: 0px 0px 10px 5px #ffffff;
+  border: solid #ffffff 1px;
+}
+
+form input {
+  border: solid #00cba9 3px;
+  border-radius: 20px;
+  font-size: 16px;
+  position: relative;
+  justify-content: center;
+  text-align: center;
+}
+
+.stock-details {
+  text-align: left;
+  padding-left: 30px;
+  /* background-color: white; */
+  border-bottom: 1px solid grey;
+}
+
+h1{
+  font-size: 35px;
+}
+
+h3{
+  font-size: 22px;
+}
+
+h4{
+  font-size: 20px;
 }
