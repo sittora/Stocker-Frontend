@@ -5,6 +5,7 @@ import '../App.css';
 import Header from "./Header";
 import Userlist from "./UserList";
 import StockList from "./StockList";
+import Backend from "./Backend"
 
 function App() {
   useEffect(() => {
@@ -49,6 +50,11 @@ function App() {
         <div id="spacer"></div>
           <Userlist userListArray={allUsers} title="Users" list={ALL_USERS} />
         </Route>
+        <Route exact path="/backend">
+          <Backend/>
+        </Route>
+        
+        
         <Route path="*">
           <h1>404 not found</h1>
         </Route>
