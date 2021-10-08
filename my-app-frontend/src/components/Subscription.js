@@ -7,6 +7,12 @@ import EditSubscriptionForm from "./EditSubscriptionForm"
 function Subscription ({ subscription, onDeleteSubscription, onUpdateSubscription }) {
     const { id, number_of_stocks, stock_price, date, stock_id, user_id } = subscription;
     // const [updatedPrice, setUpdatedPrice] = useState(price);
+    const dateInt = subscription.date;
+    const dateStr = dateInt.toString();
+    const len = dateStr.length
+    const year = dateStr.slice(len - 4);
+    const day = dateStr.slice(len - 6, len-4);
+    const month = dateStr.slice(0, len-6);
 
     function handleDeleteClick() {
         fetch(`http://localhost:9292/subscriptions/${id}`, {
@@ -43,7 +49,7 @@ function Subscription ({ subscription, onDeleteSubscription, onUpdateSubscriptio
         <tr key={subscription.id}>
                 <td>{subscription.number_of_stocks}</td>
                 <td>{subscription.stock_price}</td>
-                <td>{subscription.date}</td>
+                <td>{month}/{day}/{year}</td>
                 <td>{subscription.stock_id}</td>
                 <td>{subscription.user_id}</td>
                 <td>
@@ -52,9 +58,9 @@ function Subscription ({ subscription, onDeleteSubscription, onUpdateSubscriptio
                 {isOpen && <Popup
                     content={<>
                     <div class="subscription-details">
-                      <h1>{subscription.date}</h1>
-                      <h3>{subscription.stock_id}</h3>
-                      <h4>{subscription.user_id}</h4> 
+                      <h1>Date: {month}/{day}/{year}</h1>
+                      <h3>Stock ID: {subscription.stock_id}</h3>
+                      <h4>User ID: {subscription.user_id}</h4> 
                       <h4>Total stocks: {subscription.number_of_stocks}</h4>
                     </div>
                     
