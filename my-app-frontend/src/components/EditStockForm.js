@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 
-function NewStockForm({ handleAddStock, handleClose }) {
+function EditStockForm({ stock, handleUpdateStock, handleClose }) {
   const [name, setName] = useState("");
   const [tickerTag, setTickerTag] = useState("");
   const [price, setPrice] = useState("");
   const [totalStock, setTotalStock] = useState("");
 
-  function handleSubmit(e) {
+  function handleSubmit(e, currentStock) {
     e.preventDefault();
-    fetch("http://localhost:9292/stocks", {
-      method: "POST",
+    fetch(`http://localhost:9292/stocks/${currentStock.id}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
@@ -18,19 +18,19 @@ function NewStockForm({ handleAddStock, handleClose }) {
         ticker_tag: tickerTag,
         price: price,
         total_stock: totalStock
-      }),
+      })
     })
       .then((r) => r.json())
-      .then((newStock) => {
-        handleAddStock(newStock);
-        handleClose();
-      });
+      .then((updatedStock) => {
+          handleUpdateStock(updatedStock);
+          handleClose();
+        });
   }
 
   return (
-    <div className="new-stock-form">
-      <h2>New Stock</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="edit-stock-form">
+      <h2>Edit Stock</h2>
+      <form onSubmit={e => handleSubmit(e, stock)}>
         <input
           type="text"
           name="name"
@@ -60,10 +60,10 @@ function NewStockForm({ handleAddStock, handleClose }) {
           value={totalStock}
           onChange={(e) => setTotalStock(e.target.value)}
         />
-        <button onClick={handleAddStock} type="submit">Add Stock</button>
+        <button onClick={handleUpdateStock} type="submit">Update Stock</button>
       </form>
     </div>
   );
 }
 
-export default NewStockForm;
+export default EditStockForm;

@@ -5,13 +5,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+#title, #navbar{
+background-color: #00cba9;
+
 }
 
 th, td {
@@ -61,9 +65,25 @@ table {
 
 
 
-tr:hover {background-color: #00cba9;}
+tr:hover {background-color: #aff0e5;}
 
 .center {
   margin-left: auto;
   margin-right: auto;
+}
+
+button {
+  margin: 20px;
+  color: white;
+  background-color: #00cba9;
+  border-radius: 20px;
+  border: solid #0aa58c 3px;
+  font-size: 15px;
+}
+
+button:hover {
+  background-color: #00cba9;
+  border-radius: 20px;
+  border:solid #ffffff 3px;
+  transform: scale(1.2);
 }

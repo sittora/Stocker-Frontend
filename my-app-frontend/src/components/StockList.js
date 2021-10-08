@@ -25,22 +25,33 @@ function StockList({ title, onDeleteStock, onUpdateStock }) {
     function handleAddStock(newStock) {
         const updatedStocksArray = [...allStocks, newStock];
         setAllStocks(updatedStocksArray);
-      }
+    }
     
     function handleDeleteStock(id) {
         const updatedStocksArray = allStocks.filter((stock) => stock.id !== id);
         setAllStocks(updatedStocksArray);
-      }
+    }
+    
+    
+    function handleUpdateStock(updatedStock) {
+        const updatedStocksArray = allStocks.map((stock) => {
+          if (stock.id === updatedStock.id) {
+            return updatedStock;
+          } else {
+            return stock;
+          }
+        });
+        setAllStocks(updatedStocksArray);
+    }
 
     const stockRows = allStocks.map((stock, index) => (
         <Stock 
             key={stock.id}
             stock={stock}
             onDeleteStock={handleDeleteStock}
-            onUpdateStock={onUpdateStock}
+            onUpdateStock={handleUpdateStock}
         ></Stock>
     ));
-
 
     return (
         <div id="stock-list-container">
@@ -58,7 +69,10 @@ function StockList({ title, onDeleteStock, onUpdateStock }) {
             {isOpen && <Popup
                     content={<>
                     <h1>Add Stock</h1>
-                    <NewStockForm handleAddStock={handleAddStock}/>
+                    <NewStockForm 
+                        handleAddStock={handleAddStock}
+                        handleClose={togglePopup}
+                    />
                     </>}
                     handleClose={togglePopup}
                 />}

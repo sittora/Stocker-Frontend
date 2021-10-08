@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Popup from "./Popup";
 import NewStockForm from "./NewStockForm";
+import EditStockForm from "./EditStockForm"
 
 
 function Stock ({ stock, onDeleteStock, onUpdateStock }) {
@@ -15,6 +16,7 @@ function Stock ({ stock, onDeleteStock, onUpdateStock }) {
     
         onDeleteStock(id);
     }
+
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -55,6 +57,11 @@ function Stock ({ stock, onDeleteStock, onUpdateStock }) {
                     <p>{stock.ticker_tag}</p>
                     <p>{stock.price}</p> 
                     <p>{stock.total_stock}</p>
+                    <EditStockForm 
+                      stock={stock} 
+                      handleUpdateStock={onUpdateStock} 
+                      handleClose={togglePopup}
+                    />
                     <button onClick={handleDeleteClick}>Delete</button>
                     </>}
                     handleClose={togglePopup}
