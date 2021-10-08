@@ -57,6 +57,14 @@ function EditSubscriptionForm({ subscription, handleUpdateSubscription, handleCl
         />
         <input
           type="number"
+          name="userId"
+          step="0.01"
+          placeholder="User ID"
+          value={userId}
+          onChange={(e) => setUserId(parseFloat(e.target.value))}
+        />
+        <input
+          type="number"
           name="numberOfStocks"
           placeholder="Total number of stocks"
           value={numberOfStocks}
