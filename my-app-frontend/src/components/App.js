@@ -75,10 +75,8 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
         <Header/>
-        </BrowserRouter>
-      <BrowserRouter>
+       
       <Switch>
         <Route exact path="/">
           <div id="spacer"></div>
@@ -114,7 +112,6 @@ function App() {
           <h1>404 not found</h1>
         </Route>
       </Switch>
-      </BrowserRouter>
 
     </div>
   );
