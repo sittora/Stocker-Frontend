@@ -60,7 +60,7 @@ function NewStockForm({ handleAddStock, handleClose }) {
           value={totalStock}
           onChange={(e) => setTotalStock(e.target.value)}
         />
-        <button onClick={handleAddStock} type="submit">Add Stock</button>
+        <button type="submit">Add Stock</button>
       </form>
     </div>
   );
